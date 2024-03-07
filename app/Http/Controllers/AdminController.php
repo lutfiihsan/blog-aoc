@@ -12,27 +12,42 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function create()
-    {
-        return view('admin.blogs.create');
-    }
-
     public function blogs()
     {
         $blogs = Blog::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.blogs.read', ['blogs' => $blogs]);
     }
 
-    public function single($slug)
+    public function create_blog()
+    {
+        return view('admin.blogs.create');
+    }
+
+    public function single_blog($slug)
     {
         $blog = Blog::where('slug', $slug)->first();
         return view('admin.blogs.single', ['blog' => $blog]);
     }
 
-    public function edit($slug)
+    public function edit_blog($slug)
     {
         $blog = Blog::where('slug', $slug)->first();
         return view('admin.blogs.edit', ['blog' => $blog]);
+    }
+
+    public function categories()
+    {
+        return view('admin.categories.read');
+    }
+
+    public function create_category()
+    {
+        return view('admin.categories.create');
+    }
+
+    public function edit_category()
+    {
+        return view('admin.blogs.edit');
     }
 
     public function upload_images(Request $request)
