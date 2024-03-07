@@ -10,6 +10,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                     Blogs
                 </a>
+                <a class="nav-link" href="{{ url('admin/categories') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                    Categories
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
