@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class BlogsController extends Controller
 {
-    public function index()
-    {
-        return view('admin.dashboard');
-    }
-
     public function blogs()
     {
-        $blogs = Blog::orderBy('created_at', 'desc')->paginate(5);
+        $blogs = Blog::join('users', 'blogs.inputed_by', '=', 'users.user_id')
+            ->join('categories', 'blogs.category_id', '=', 'categories.category_id')
+            ->select('blogs.*', 'users.fullname', 'categories.category_name')
+            ->orderBy('blogs.created_at', 'desc')
+            ->paginate(5);
         return view('admin.blogs.read', ['blogs' => $blogs]);
     }
 
@@ -25,7 +25,11 @@ class AdminController extends Controller
 
     public function single_blog($slug)
     {
-        $blog = Blog::where('slug', $slug)->first();
+        $blog = Blog::join('users', 'blogs.inputed_by', '=', 'users.user_id')
+            ->join('categories', 'blogs.category_id', '=', 'categories.category_id')
+            ->select('blogs.*', 'users.fullname', 'categories.category_name')
+            ->where('blogs.slug', $slug)
+            ->first();
         return view('admin.blogs.single', ['blog' => $blog]);
     }
 
@@ -33,21 +37,6 @@ class AdminController extends Controller
     {
         $blog = Blog::where('slug', $slug)->first();
         return view('admin.blogs.edit', ['blog' => $blog]);
-    }
-
-    public function categories()
-    {
-        return view('admin.categories.read');
-    }
-
-    public function create_category()
-    {
-        return view('admin.categories.create');
-    }
-
-    public function edit_category()
-    {
-        return view('admin.blogs.edit');
     }
 
     public function upload_images(Request $request)
@@ -62,7 +51,7 @@ class AdminController extends Controller
 
             $url = asset('images/' . $fileName);
 
-            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+            return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }
     }
 
