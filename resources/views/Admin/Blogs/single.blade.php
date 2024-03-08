@@ -5,11 +5,7 @@
     <main>
         <div class="container-fluid px-4">
             <div class="my-3">
-                @include('Layout.BackEnd.Components.blog-button-back')
-                <a href="{{ url('admin/blogs/'. $blog->slug .'/edit') }}" class="btn btn-sm btn-warning">
-                    <fa class="fa fa-fw fa-edit"></fa>
-                    Edit
-                </a>                
+                @include('Layout.BackEnd.Components.blog-button-back')            
             </div>
             <h1 class="my-4">{{ $blog->title }}</h1>
             <div class="row">
@@ -26,7 +22,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Penulis</th>
-                                                <td>{{ Str::ucfirst($blog->created_by) }}</td>
+                                                <td>{{ Str::ucfirst($blog->fullname) }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Tgl Dibuat</th>

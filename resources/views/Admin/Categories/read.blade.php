@@ -25,6 +25,27 @@
                                                 <th>Slug</th>
                                                 <th></th>
                                             </tr>
+                                            @foreach ($categories as $category)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $category->category_name }}</td>
+                                                    <td>{{ $category->slug }}</td>
+                                                    <td>
+                                                        <a href="{{ url('admin/categories/' . $category->slug . '/edit') }}"
+                                                            class="btn btn-sm btn-warning">
+                                                            <fa class="fa fa-fw fa-edit"></fa> Edit
+                                                        </a>
+                                                        <form action="{{ url('admin/categories/' . $category->slug) }}"
+                                                            method="post" class="d-inline">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-sm btn-danger">
+                                                                <fa class="fa fa-fw fa-trash"></fa> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </table>
 
                                     </div>
