@@ -31,18 +31,6 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Penulis</th>
-                                                <td>
-                                                    <input type="text" 
-                                                           name="created_by" 
-                                                           class="form-control" 
-                                                           value="{{ Str::ucfirst($blog->created_by) }}" 
-                                                           required="true" 
-                                                           placeholder="Penulis Blog" 
-                                                           autocomplete="off" />
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <th>Status</th>
                                                 <td>
                                                     <select name="status" 

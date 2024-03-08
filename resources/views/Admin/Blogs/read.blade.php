@@ -23,17 +23,19 @@
                                                 <th>No</th>
                                                 <th>Judul</th>
                                                 <th>Penulis</th>
-                                                <th>Tgl Dibuat</th>
+                                                <th>Kategori</th>
                                                 <th>Status</th>
+                                                <th>Tanggal Dibuat</th>
                                                 <th></th>
                                             </tr>
                                             @foreach ($blogs as $blog)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $blog->title }}</td>
-                                                    <td>{{ Str::ucfirst($blog->created_by) }}</td>
-                                                    <td>{{ date_indo($blog->created_at) }}</td>
+                                                    <td>{{ Str::ucfirst($blog->fullname) }}</td>
+                                                    <td>{{ Str::ucfirst($blog->category_name) }}</td>
                                                     <td>{!! status_blog($blog->status) !!}</td>
+                                                    <td>{{ date_indo($blog->created_at) }}</td>
                                                     <td>
                                                         <a href="{{ url('admin/blogs', $blog->slug) }}"
                                                             class="btn btn-sm btn-primary">
