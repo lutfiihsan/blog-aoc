@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UsersSeeder extends Seeder
 {
@@ -16,13 +17,13 @@ class UsersSeeder extends Seeder
             [
                 'fullname' => 'Administrator',
                 'username' => 'admin',
-                'password' => bcrypt('admin'),
+                'password' => Hash::make('admin'),
                 'level' => 'administrator',
             ],
             [
                 'fullname' => 'Blogger',
                 'username' => 'blogger',
-                'password' => bcrypt('blogger'),
+                'password' => Hash::make('blogger'),
                 'level' => 'blogger',
             ],
         ];
