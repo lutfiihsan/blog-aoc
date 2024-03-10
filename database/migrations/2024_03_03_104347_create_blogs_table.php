@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('image')->nullable();
-            $table->string('created_by');
-            $table->string('input_by');
+            $table->string('category_id');
+            $table->string('created_by')->nullable();
+            $table->string('inputed_by')->nullable();
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->timestamps();
         });
