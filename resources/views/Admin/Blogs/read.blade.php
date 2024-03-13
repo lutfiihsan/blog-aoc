@@ -1,64 +1,72 @@
-@extends('Layout.BackEnd.app')
-@section('title', 'Blogs')
+@extends('Layout.Backend.dashcode')
 
 @section('content')
-    <main>
-        <div class="container-fluid px-4">
-            <h1 class="my-4">List Blogs</h1>
-            <div class="my-3">
-                <a href="{{ url('admin/blogs/create') }}" class="btn btn-sm btn-primary">
-                    <fa class="fa fa-fw fa-plus"></fa> Tambah Blog
+    <div class="card">
+        <header class=" card-header noborder">
+            <h4 class="card-title">
+                Blogs
+            </h4>
+            <div class="card-action">
+                <a href="{{ url('admin/blogs/create') }}" 
+                    class="bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white px-3 py-2 rounded-[999px] flex items-center space-x-2 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all duration-150">
+                    Create Blog
                 </a>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Judul</th>
-                                                <th>Penulis</th>
-                                                <th>Kategori</th>
-                                                <th>Status</th>
-                                                <th>Tanggal Dibuat</th>
-                                                <th></th>
-                                            </tr>
-                                            @foreach ($blogs as $blog)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $blog->title }}</td>
-                                                    <td>{{ Str::ucfirst($blog->fullname) }}</td>
-                                                    <td>{{ Str::ucfirst($blog->category_name) }}</td>
-                                                    <td>{!! status_blog($blog->status) !!}</td>
-                                                    <td>{{ date_indo($blog->created_at) }}</td>
-                                                    <td>
-                                                        <a href="{{ url('admin/blogs', $blog->slug) }}"
-                                                            class="btn btn-sm btn-primary">
-                                                            <fa class="fa fa-fw fa-eye"></fa>
-                                                        </a>
-                                                        <a href="{{ url('admin/blogs/' . $blog->slug . '/edit') }}"
-                                                            class="btn btn-sm btn-warning">
-                                                            <fa class="fa fa-fw fa-edit"></fa>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </table>
-
-                                        {{ $blogs->links() }}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        </header>
+        <div class="card-body px-6 pb-6">
+            <div class="overflow-x-auto mx-0">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden ">
+                        <table class="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700">
+                            <thead class="bg-slate-200 dark:bg-slate-700">
+                                <tr>
+                                    <th scope="col" class=" table-th ">
+                                        No
+                                    </th>
+                                    <th scope="col" class=" table-th ">
+                                        Title
+                                    </th>
+                                    <th scope="col" class=" table-th ">
+                                        Created By
+                                    </th>
+                                    <th scope="col" class=" table-th " style="text-align: center !important;">
+                                        Status
+                                    </th>
+                                    <th scope="col" class=" table-th ">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                @for ($i = 1; $i < 6; $i++)
+                                    <tr>
+                                        <td class="table-td">82</td>
+                                        <td class="table-td">Dorelle</td>
+                                        <td class="table-td ">dharling0@rediff.com</td>
+                                        <td class="table-td text-center">
+                                            <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500 bg-success-500">
+                                                Published
+                                            </div>
+                                        </td>
+                                        <td class="table-td ">
+                                            <div class="flex space-x-3 rtl:space-x-reverse">
+                                                <button class="action-btn" type="button">
+                                                    <iconify-icon icon="heroicons:eye"></iconify-icon>
+                                                </button>
+                                                <button class="action-btn" type="button">
+                                                    <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
+                                                </button>
+                                                <button class="action-btn" type="button">
+                                                    <iconify-icon icon="heroicons:trash"></iconify-icon>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endfor
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 @endsection
