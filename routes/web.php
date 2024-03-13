@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PublicBlogController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,10 @@ Route::get('/', [PublicBlogController::class, 'index']);
 Route::get('/blog', [PublicBlogController::class, 'detail']);
 
 Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register']);
+
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
+Route::get('/admin/config', [AdminController::class, 'config']);
 
 Route::get('/admin/blogs', [BlogsController::class, 'blogs']);
 Route::get('/admin/blogs/create', [BlogsController::class, 'create_blog']);
@@ -38,3 +42,4 @@ Route::get('/admin/categories', [CategoryController::class, 'categories']);
 Route::get('/admin/categories/create', [CategoryController::class, 'create_category']);
 Route::get('/admin/categories/{slug}/edit', [CategoryController::class, 'edit_category']);
 
+Route::get('/admin/users', [UsersController::class, 'index']);
